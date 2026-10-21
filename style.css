@@ -43,6 +43,8 @@
     --container: 1150px;
 
     --transition: 0.3s ease;
+
+    --nav-height: 76px;
 }
 
 
@@ -187,7 +189,7 @@ a {
 
 .nav-content {
 
-    height: 76px;
+    height: var(--nav-height);
 
     display: flex;
 
@@ -329,20 +331,14 @@ a {
 
     z-index: 1001;
 
-    max-height: calc(100vh - 76px);
+    height: calc(100dvh - var(--nav-height));
 
     overflow: auto;
 
-    background:
-        rgba(7, 10, 15, 0.96);
-
-    backdrop-filter: blur(18px);
-
-    border-bottom:
-        1px solid var(--border);
+    background: var(--bg);
 
     padding:
-        8px 0 16px;
+        8px 0 32px;
 }
 
 .mobile-nav[hidden] {
@@ -354,11 +350,15 @@ a {
 
     display: block;
 
-    padding: 14px 0;
+    padding: 16px 0;
 
-    color: var(--text);
+    color: var(--white);
 
-    font-size: 0.95rem;
+    background: var(--bg);
+
+    font-size: 1rem;
+
+    font-weight: 600;
 
     border-bottom:
         1px solid var(--border);
@@ -1713,9 +1713,13 @@ footer {
         padding: 85px 0;
     }
 
+    :root {
+        --nav-height: 68px;
+    }
+
     .nav-content {
 
-        height: 68px;
+        height: var(--nav-height);
     }
 
     .hero {
