@@ -44,7 +44,37 @@
                 LinkedIn ↗
             </a>
 
+            <button
+                type="button"
+                class="nav-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-nav"
+                aria-label="Open menu"
+            >
+                <span class="nav-toggle-bar" aria-hidden="true"></span>
+                <span class="nav-toggle-bar" aria-hidden="true"></span>
+                <span class="nav-toggle-bar" aria-hidden="true"></span>
+            </button>
+
         </div>
+
+        <nav id="mobile-nav" class="mobile-nav" aria-label="Sections" hidden>
+            <div class="container">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+                <a
+                    href="https://www.linkedin.com/in/gift-seboge-9758ab299/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    LinkedIn
+                </a>
+            </div>
+        </nav>
 
     </header>
 
@@ -331,10 +361,7 @@
                                 <h3>Based In</h3>
 
                                 <p>
-                                    Pretoria, South Africa
-                                </p>
-					<p>
-                                    Gauteng, South Africa
+                                    Pretoria, Gauteng, South Africa
                                 </p>
                             </div>
 
@@ -1033,10 +1060,7 @@ GuessGame {
                             <div>
                                 <small>LOCATION</small>
                                 <strong>
-                                    Pretoria, South Africa
-                                </strong></br>
-					 <strong>
-                                    Gauteng, South Africa
+                                    Pretoria, Gauteng, South Africa
                                 </strong>
                             </div>
 
@@ -1106,6 +1130,51 @@ GuessGame {
 
     </footer>
 
+    <script>
+        (function () {
+            var toggle = document.querySelector(".nav-toggle");
+            var menu = document.getElementById("mobile-nav");
+
+            if (!toggle || !menu) {
+                return;
+            }
+
+            function setOpen(open) {
+                toggle.setAttribute("aria-expanded", open ? "true" : "false");
+                toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+                menu.hidden = !open;
+            }
+
+            toggle.addEventListener("click", function () {
+                setOpen(toggle.getAttribute("aria-expanded") !== "true");
+            });
+
+            menu.addEventListener("click", function (event) {
+                if (event.target.closest("a")) {
+                    setOpen(false);
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+                    setOpen(false);
+                    toggle.focus();
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                if (toggle.getAttribute("aria-expanded") !== "true") {
+                    return;
+                }
+
+                if (event.target.closest(".navbar")) {
+                    return;
+                }
+
+                setOpen(false);
+            });
+        })();
+    </script>
 
 </body>
 </html>

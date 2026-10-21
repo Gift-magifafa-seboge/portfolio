@@ -3,6 +3,18 @@
    Modern Dark Developer Portfolio
 ========================================================= */
 
+@font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400 900;
+    font-display: swap;
+    src: url("fonts/inter-latin.woff2") format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+        U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 
 /* =========================================================
    ROOT VARIABLES
@@ -31,6 +43,8 @@
     --container: 1150px;
 
     --transition: 0.3s ease;
+
+    --nav-height: 76px;
 }
 
 
@@ -175,7 +189,7 @@ a {
 
 .nav-content {
 
-    height: 76px;
+    height: var(--nav-height);
 
     display: flex;
 
@@ -267,6 +281,97 @@ a {
     background: var(--cyan);
 
     color: #001014;
+}
+
+.nav-toggle {
+
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border:
+        1px solid rgba(0, 229, 255, 0.4);
+
+    border-radius: 5px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.nav-toggle-bar {
+
+    display: block;
+
+    width: 18px;
+    height: 2px;
+
+    background: var(--cyan);
+
+    border-radius: 1px;
+}
+
+.mobile-nav {
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    z-index: 1001;
+
+    height: calc(100dvh - var(--nav-height));
+
+    overflow: auto;
+
+    background: var(--bg);
+
+    padding:
+        8px 0 32px;
+}
+
+.mobile-nav[hidden] {
+
+    display: none !important;
+}
+
+.mobile-nav a {
+
+    display: block;
+
+    padding: 16px 0;
+
+    color: var(--white);
+
+    background: var(--bg);
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.mobile-nav a:last-child {
+
+    border-bottom: none;
+}
+
+.mobile-nav a:hover {
+
+    color: var(--cyan);
 }
 
 
@@ -1310,6 +1415,17 @@ a {
     font-size: 0.95rem;
 }
 
+.wil-buttons {
+
+    display: flex;
+
+    flex-shrink: 0;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
 
 /* =========================================================
    CONTACT
@@ -1510,10 +1626,23 @@ footer {
    RESPONSIVE — TABLET
 ========================================================= */
 
+@media (min-width: 951px) {
+
+    .mobile-nav {
+        display: none !important;
+    }
+
+}
+
 @media (max-width: 950px) {
 
-    .desktop-nav {
+    .desktop-nav,
+    .nav-linkedin {
         display: none;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
     }
 
     .hero-grid {
@@ -1584,14 +1713,13 @@ footer {
         padding: 85px 0;
     }
 
-    .nav-content {
-
-        height: 68px;
+    :root {
+        --nav-height: 68px;
     }
 
-    .nav-linkedin {
+    .nav-content {
 
-        display: none;
+        height: var(--nav-height);
     }
 
     .hero {
@@ -1708,24 +1836,48 @@ footer {
 
         justify-content: center;
     }
-.wil-buttons {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 600px) {
 
     .wil-buttons {
+
         width: 100%;
+
         flex-direction: column;
     }
 
     .wil-buttons .btn {
+
         width: 100%;
     }
 
 }
 
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+    transition: none;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .status-dot,
+    .blink,
+    .terminal-wrapper {
+        animation: none;
+    }
 
 }
