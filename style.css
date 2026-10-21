@@ -3,6 +3,18 @@
    Modern Dark Developer Portfolio
 ========================================================= */
 
+@font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400 900;
+    font-display: swap;
+    src: url("fonts/inter-latin.woff2") format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+        U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 
 /* =========================================================
    ROOT VARIABLES
@@ -81,6 +93,11 @@ a {
 ::selection {
     background: var(--cyan);
     color: #001014;
+}
+
+:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
 }
 
 
@@ -267,6 +284,99 @@ a {
     background: var(--cyan);
 
     color: #001014;
+}
+
+.nav-toggle {
+
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border:
+        1px solid rgba(0, 229, 255, 0.4);
+
+    border-radius: 5px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.nav-toggle-bar {
+
+    display: block;
+
+    width: 18px;
+    height: 2px;
+
+    background: var(--cyan);
+
+    border-radius: 1px;
+}
+
+.mobile-nav {
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    z-index: 1001;
+
+    max-height: calc(100vh - 76px);
+
+    overflow: auto;
+
+    background:
+        rgba(7, 10, 15, 0.96);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+
+    padding:
+        8px 0 16px;
+}
+
+.mobile-nav[hidden] {
+
+    display: none !important;
+}
+
+.mobile-nav a {
+
+    display: block;
+
+    padding: 14px 0;
+
+    color: var(--text);
+
+    font-size: 0.95rem;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.mobile-nav a:last-child {
+
+    border-bottom: none;
+}
+
+.mobile-nav a:hover {
+
+    color: var(--cyan);
 }
 
 
@@ -1310,6 +1420,17 @@ a {
     font-size: 0.95rem;
 }
 
+.wil-buttons {
+
+    display: flex;
+
+    flex-shrink: 0;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
 
 /* =========================================================
    CONTACT
@@ -1510,10 +1631,23 @@ footer {
    RESPONSIVE — TABLET
 ========================================================= */
 
+@media (min-width: 951px) {
+
+    .mobile-nav {
+        display: none !important;
+    }
+
+}
+
 @media (max-width: 950px) {
 
-    .desktop-nav {
+    .desktop-nav,
+    .nav-linkedin {
         display: none;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
     }
 
     .hero-grid {
@@ -1587,11 +1721,6 @@ footer {
     .nav-content {
 
         height: 68px;
-    }
-
-    .nav-linkedin {
-
-        display: none;
     }
 
     .hero {
@@ -1708,24 +1837,36 @@ footer {
 
         justify-content: center;
     }
-.wil-buttons {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 600px) {
 
     .wil-buttons {
+
         width: 100%;
+
         flex-direction: column;
     }
 
     .wil-buttons .btn {
+
         width: 100%;
     }
 
 }
 
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .status-dot,
+    .blink,
+    .terminal-wrapper {
+        animation: none;
+    }
 
 }
